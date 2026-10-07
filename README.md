@@ -1,5 +1,10 @@
 # SDG Traders - Construction Materials Commercial Website
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Gopi-31/sdg-traders)
+
+🌐 **Live Website (GitHub Pages):** [https://gopi-31.github.io/sdg-traders/](https://gopi-31.github.io/sdg-traders/)  
+🚀 **Deploy on Vercel:** [Click here to 1-Click Deploy on Vercel](https://vercel.com/new/clone?repository-url=https://github.com/Gopi-31/sdg-traders)
+
 A modern, high-performance, responsive e-commerce and quotation platform designed specifically for **SDG Traders**, supplying verified construction materials:
 
 - **M-SAND** (Manufactured Sand)
