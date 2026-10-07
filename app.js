@@ -33,48 +33,9 @@ const MATERIAL_CATALOG = [
     step: 1
   },
   {
-    id: 'steel',
-    name: 'STEEL BARS (TMT Rebars)',
-    category: 'steel',
-    price: 68000,
-    unit: 'Ton',
-    spec: 'Fe-550D High Ductility',
-    desc: 'Primary grade earthquake-resistant Thermo-Mechanically Treated steel rebars. Available in 8mm, 10mm, 12mm, 16mm, 20mm & 25mm bundles.',
-    image: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=700&q=80',
-    defaultQty: 1,
-    minQty: 0.5,
-    step: 0.5
-  },
-  {
-    id: 'cement',
-    name: 'CEMENTS (53-Grade / PPC)',
-    category: 'cement',
-    price: 420,
-    unit: 'Bag (50 Kg)',
-    spec: 'IS 12269 Certified Fresh Stock',
-    desc: 'Freshly packed 53-Grade OPC and Portland Pozzolana Cement bags from leading certified manufacturers (UltraTech, Ramco, Coromandel).',
-    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=700&q=80',
-    defaultQty: 50,
-    minQty: 10,
-    step: 5
-  },
-  {
-    id: 'bricks',
-    name: 'BRICKS (Red Wirecut / Fly Ash)',
-    category: 'bricks',
-    price: 11000,
-    unit: '1,000 Pieces',
-    spec: 'Grade-A Kiln Burnt (9"x4.25"x3")',
-    desc: 'Machine-cut dense red clay bricks and certified high-strength fly ash blocks with sharp edges, high compressive load capacity, and low water absorption.',
-    image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=700&q=80',
-    defaultQty: 3,
-    minQty: 1,
-    step: 1
-  },
-  {
     id: 'gravel',
     name: 'GRAVEL (Coarse Aggregate / Jelly)',
-    category: 'sand',
+    category: 'gravel',
     price: 1400,
     unit: 'Ton',
     spec: '20mm & 40mm Blue Metal Granite',
@@ -362,31 +323,27 @@ function toggleCartDrawer(open) {
 
 // 4. Construction Quantity Estimator Engine
 const ESTIMATION_RULES = {
-  // Concrete RCC Slab per 1000 sq ft (assuming standard 5 inch / 125mm slab thickness)
+  // Concrete Aggregates per 1000 sq ft (assuming standard 5 inch slab)
   concrete: (area) => {
     const factor = area / 1000;
     return [
-      { id: 'cement', qty: Math.round(85 * factor), unit: 'Bag (50 Kg)' },
       { id: 'msand', qty: Math.round(8.5 * factor * 10) / 10, unit: 'Ton' },
-      { id: 'gravel', qty: Math.round(12.5 * factor * 10) / 10, unit: 'Ton' },
-      { id: 'steel', qty: Math.round(1.2 * factor * 10) / 10, unit: 'Ton' }
+      { id: 'gravel', qty: Math.round(12.5 * factor * 10) / 10, unit: 'Ton' }
     ];
   },
-  // Wall Plastering per 1000 sq ft (12mm single coat, 1:4 mix)
+  // Wall Plastering Sand per 1000 sq ft (12mm single coat)
   plastering: (area) => {
     const factor = area / 1000;
     return [
-      { id: 'psand', qty: Math.round(2.8 * factor * 10) / 10, unit: 'Ton' },
-      { id: 'cement', qty: Math.round(15 * factor), unit: 'Bag (50 Kg)' }
+      { id: 'psand', qty: Math.round(2.8 * factor * 10) / 10, unit: 'Ton' }
     ];
   },
-  // Brick Masonry per 1000 sq ft (9-inch thick standard wall)
-  brickwork: (area) => {
+  // Sub-base & Foundation Aggregates per 1000 sq ft
+  foundation: (area) => {
     const factor = area / 1000;
     return [
-      { id: 'bricks', qty: Math.round(9 * factor), unit: '1,000 Pieces' }, // 9,000 bricks
-      { id: 'msand', qty: Math.round(4.2 * factor * 10) / 10, unit: 'Ton' },
-      { id: 'cement', qty: Math.round(22 * factor), unit: 'Bag (50 Kg)' }
+      { id: 'gravel', qty: Math.round(15.0 * factor * 10) / 10, unit: 'Ton' },
+      { id: 'msand', qty: Math.round(5.0 * factor * 10) / 10, unit: 'Ton' }
     ];
   }
 };

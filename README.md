@@ -9,9 +9,6 @@ A modern, high-performance, responsive e-commerce and quotation platform designe
 
 - **M-SAND** (Manufactured Sand)
 - **P-SAND** (Plastering Sand)
-- **STEEL BARS** (Fe-550D TMT Rebars)
-- **CEMENTS** (53-Grade / PPC)
-- **BRICKS** (Red Wirecut / High Density Fly Ash)
 - **GRAVEL** (20mm & 40mm Blue Metal Coarse Aggregate)
 
 ---
